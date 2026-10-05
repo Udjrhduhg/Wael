@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TORKY — علم النفس المظلم</title>
+<link href="https://fonts.googleapis.com/css2?family=Creepster&family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050404;--ink:#d8cfc8;--dim:#7d726c;--blood:#b3121a;--deep:#3a0508;--line:#2a1214;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*:before,*:after{box-sizing:inherit}
+[hidden]{display:none!important}
+html{scroll-padding-top:env(safe-area-inset-top,0px);background:var(--bg)}
+body{margin:0;background:radial-gradient(ellipse at 50% -10%,#2a0508 0,var(--bg) 60%) fixed,var(--bg);color:var(--ink);font-family:'Cairo',Tahoma,sans-serif;line-height:1.9;overflow-x:hidden}
+body:after{content:"";position:fixed;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.28) 0 1px,transparent 1px 3px);z-index:50}
+.wrap{max-width:720px;margin:0 auto;padding:0 20px}
+/* gate */
+#gate{position:fixed;inset:0;z-index:100;background:var(--bg);display:flex;align-items:flex-start;justify-content:center;padding:6vh 24px 24px;overflow:auto;text-align:center}
+#gate .box{max-width:420px;border:1px solid var(--blood);padding:28px 22px;box-shadow:0 0 40px rgba(179,18,26,.3)}
+#gate h2{margin:0 0 8px;font-size:22px;color:var(--blood)}
+input,select,textarea{width:100%;background:#0b0707;border:1px solid var(--line);color:var(--ink);padding:12px 14px;font:inherit;border-radius:2px;margin:6px 0 14px}
+input:focus,select:focus,textarea:focus,button:focus-visible,a:focus-visible{outline:2px solid var(--blood);outline-offset:2px}
+button,.btn{display:inline-block;background:var(--blood);color:#fff;border:0;padding:13px 26px;font:900 17px 'Cairo',sans-serif;cursor:pointer;text-decoration:none;border-radius:2px;box-shadow:0 0 22px rgba(179,18,26,.45)}
+button:hover,.btn:hover{background:#d3161f}
+.err{color:#ff4a52;min-height:26px;margin:8px 0 0}
+/* hero */
+header{text-align:center;padding:70px 0 40px}
+.logo{font-family:'Creepster','Impact',cursive;font-size:clamp(54px,17vw,120px);letter-spacing:.06em;color:var(--blood);margin:0;line-height:1;direction:ltr;text-shadow:0 0 18px rgba(179,18,26,.7),0 6px 0 var(--deep),0 12px 22px #000;animation:flick 6s infinite}
+.hero-img{display:block;margin:0 auto -30px;width:min(340px,78vw);aspect-ratio:3/4;object-fit:cover;object-position:center top;-webkit-mask-image:radial-gradient(ellipse 62% 66% at 50% 46%,#000 40%,transparent 100%);mask-image:radial-gradient(ellipse 62% 66% at 50% 46%,#000 40%,transparent 100%);filter:contrast(1.2) saturate(1.1);animation:trem .22s infinite steps(2),flick 7s infinite,jolt 5s infinite}
+.skull{font-size:34px;color:var(--ink);opacity:.6;animation:flick 6s infinite}
+.logo{position:relative;display:inline-block}
+.logo:before,.logo:after{content:attr(data-text);position:absolute;inset:0;overflow:hidden}
+.logo:before{color:#fff;text-shadow:none;opacity:0;animation:gl1 3.2s infinite steps(1);clip-path:inset(0 0 60% 0)}
+.logo:after{color:#00e0ff;text-shadow:none;opacity:0;animation:gl2 2.6s infinite steps(1);clip-path:inset(55% 0 0 0)}
+@keyframes gl1{0%,88%{transform:translate(0);opacity:0}90%{transform:translate(-6px,2px);opacity:.7}94%{transform:translate(5px,-2px);opacity:.7}96%,100%{transform:translate(0);opacity:0}}
+@keyframes gl2{0%,80%{transform:translate(0);opacity:0}83%{transform:translate(6px,-1px);opacity:.6}90%{transform:translate(-5px,2px);opacity:.6}93%,100%{transform:translate(0);opacity:0}}
+.drip{display:block;margin:0 auto;width:min(420px,80vw);height:60px;overflow:visible}
+.drip path{fill:var(--blood);animation:dr 5s ease-in infinite;transform-origin:top}
+.drip path:nth-child(2){animation-delay:1.3s}.drip path:nth-child(3){animation-delay:2.6s}
+@keyframes dr{0%{transform:scaleY(.2);opacity:0}30%{opacity:1}100%{transform:scaleY(1.6);opacity:0}}
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:26px 0 0}
+.gal figure{margin:0;text-align:center;border:1px solid var(--line);background:#080505;padding:10px 4px 8px}
+.gal svg{width:100%;height:auto;display:block}
+.gal figcaption{font-size:13px;color:var(--dim);line-height:1.5;margin-top:4px}
+.eyelid{transform-origin:60px 40px;animation:blink 4.5s infinite}
+@keyframes blink{0%,92%,100%{transform:scaleY(0)}95%{transform:scaleY(1)}}
+.pup{animation:look 7s infinite ease-in-out}
+@keyframes look{0%,100%{transform:translateX(0)}30%{transform:translateX(-9px)}60%{transform:translateX(9px)}}
+.vein{stroke-dasharray:6 8;animation:flow 2.5s linear infinite}
+@keyframes flow{to{stroke-dashoffset:-56}}
+.pulse{transform-origin:60px 45px;animation:pul 2s infinite ease-in-out}
+@keyframes pul{0%,100%{transform:scale(1)}50%{transform:scale(1.05)}}
+.glow{animation:gw 2.4s infinite alternate}
+@keyframes gw{from{opacity:.4}to{opacity:1}}
+.smile{animation:sm 5s infinite ease-in-out;transform-origin:60px 62px}
+@keyframes sm{0%,100%{transform:scaleX(1)}50%{transform:scaleX(1.12)}}
+@keyframes flick{0%,92%,100%{opacity:1}93%{opacity:.35}94%{opacity:1}96%{opacity:.5}97%{opacity:1}}
+.tag{color:var(--dim);margin:18px 0 0;font-size:17px}
+h2.s{font-size:26px;font-weight:900;color:var(--ink);margin:50px 0 6px;border-right:4px solid var(--blood);padding-right:12px}
+p.sub{color:var(--dim);margin:0 0 20px}
+/* books */
+.book{border:1px solid var(--line);background:linear-gradient(180deg,#0e0808,#080505);padding:18px 18px 16px;margin-bottom:14px;display:flex;gap:14px;align-items:flex-start;justify-content:space-between}
+.book h3{margin:0 0 2px;font-size:19px;color:#f1e6df}
+.book p{margin:0;color:var(--dim);font-size:15px;line-height:1.7}
+.book button{padding:9px 16px;font-size:15px;white-space:nowrap;flex:none}
+.warn{border:1px dashed var(--blood);padding:16px 18px;color:#e8c9c4;background:rgba(179,18,26,.07)}
+label{font-weight:700}
+.chk{display:flex;gap:10px;align-items:flex-start;margin:4px 0 16px;font-weight:400}
+.chk input{width:22px;height:22px;margin:4px 0 0;flex:none;accent-color:var(--blood)}
+footer{text-align:center;color:var(--dim);padding:50px 0 40px;font-size:14px}
+
+.wrap{position:relative;z-index:2}
+.bg{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.bg .e{position:absolute;width:26px;height:8px;opacity:0;animation:ee 7s infinite}
+.bg .e:before,.bg .e:after{content:"";position:absolute;top:0;width:8px;height:8px;border-radius:50%;background:#e0262e;box-shadow:0 0 10px 3px rgba(224,38,46,.8)}
+.bg .e:before{left:0}.bg .e:after{right:0}
+@keyframes ee{0%,55%,100%{opacity:0}60%,80%{opacity:1}85%{opacity:0}}
+.bg .p{position:absolute;bottom:-40px;font-size:28px;color:rgba(179,18,26,.35);animation:rise 14s linear infinite}
+@keyframes rise{to{transform:translateY(-110vh) rotate(40deg);opacity:0}}
+.geye{width:120px;display:block;margin:0 auto 6px;filter:drop-shadow(0 0 12px rgba(179,18,26,.8))}
+.glogo{font-size:clamp(46px,15vw,78px);margin:4px 0 12px}
+#gate .box{background:radial-gradient(ellipse at 50% 0,#2a0508,#050404 70%)}
+#intro{position:fixed;inset:0;z-index:95;background:#000;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;animation:intro 4.9s forwards}
+#intro .logo{font-size:clamp(64px,22vw,150px)}
+.psi{font-size:54px;color:var(--blood);text-shadow:0 0 24px var(--blood);animation:gw 1s infinite alternate}
+#intro p{color:var(--dim);margin:6px 0 0}
+@keyframes intro{0%{opacity:0}18%{opacity:1}82%{opacity:1}100%{opacity:0}}
+@keyframes trem{0%,100%{transform:translate(0,0)}25%{transform:translate(1.5px,-1px)}50%{transform:translate(-1.5px,1px)}75%{transform:translate(1px,1.5px)}}
+@keyframes jolt{0%,84%,100%{translate:0 0;rotate:0deg}86%{translate:-8px 3px;rotate:-1.2deg}88%{translate:9px -4px;rotate:1.4deg}90%{translate:-6px 2px;rotate:-.8deg}92%{translate:5px 3px;rotate:.6deg}}
+.dang{animation:dang 3s ease-in-out infinite}
+@keyframes dang{0%,100%{transform:translateY(-6px)}50%{transform:translateY(10px)}}
+.legs{transform-origin:60px 48px;animation:twt .5s infinite alternate}
+@keyframes twt{from{transform:scale(1)}to{transform:scale(1.06,.96)}}
+.sway{transform-origin:60px 6px;animation:swy 3.5s ease-in-out infinite}
+@keyframes swy{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(7deg)}}
+
+.logo{background:linear-gradient(100deg,#3a0508 0,#b3121a 25%,#ff3a42 50%,#b3121a 75%,#3a0508 100%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;text-shadow:none;filter:drop-shadow(0 0 14px rgba(179,18,26,.7)) drop-shadow(0 6px 0 #3a0508);animation:flick 6s infinite,flow2 3.5s linear infinite}
+.logo:before,.logo:after{-webkit-text-fill-color:currentColor;background:none}
+@keyframes flow2{to{background-position:-250% 0}}
+.bar{width:min(300px,70vw);height:4px;background:#2a1214;margin:22px 0 4px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--blood);box-shadow:0 0 12px var(--blood);animation:ld 4.4s ease-in-out forwards}
+@keyframes ld{to{width:100%}}
+.tick{direction:ltr;overflow:hidden;white-space:nowrap;border-block:1px solid var(--line);margin:0 0 24px;color:var(--blood);font-weight:900;letter-spacing:.18em}
+.tick div{display:inline-block;padding:6px 0;animation:tk 24s linear infinite}
+@keyframes tk{to{transform:translateX(-50%)}}
+.banner{position:relative;margin:30px 0;overflow:hidden}
+.banner img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;-webkit-mask-image:radial-gradient(ellipse 75% 75% at 50% 50%,#000 45%,transparent 100%);mask-image:radial-gradient(ellipse 75% 75% at 50% 50%,#000 45%,transparent 100%);animation:kb 14s ease-in-out infinite alternate,flick 8s infinite}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.14) translateX(-10px)}}
+.banner span{position:absolute;bottom:10px;left:0;right:0;text-align:center;font-weight:900;font-size:20px;color:var(--ink);text-shadow:0 0 12px #000,0 0 18px var(--blood)}
+.quote{border:1px solid var(--line);padding:26px 18px;text-align:center;margin:26px 0;background:#080505;min-height:150px;transition:opacity .8s;display:flex;flex-direction:column;justify-content:center}
+.quote.off{opacity:0}
+.quote p{font-size:20px;font-weight:700;color:#f1e6df;margin:0 0 8px}
+.quote small{color:var(--blood);font-size:15px}
+.spin{transform-origin:60px 45px;animation:spn 6s linear infinite}
+@keyframes spn{to{transform:rotate(360deg)}}
+.shift{animation:sh 2.5s infinite steps(1)}
+@keyframes sh{0%,70%{transform:translateX(0)}75%{transform:translateX(5px)}85%{transform:translateX(-3px)}100%{transform:translateX(0)}}
+
+.tear{animation:tr 3s infinite ease-in}
+@keyframes tr{0%{transform:translateY(-6px);opacity:0}20%{opacity:1}100%{transform:translateY(20px);opacity:0}}
+.vig{position:fixed;inset:0;pointer-events:none;z-index:3;background:radial-gradient(ellipse at center,transparent 45%,rgba(0,0,0,.85) 100%);animation:vg 6s ease-in-out infinite alternate}
+@keyframes vg{from{opacity:.7}to{opacity:1}}
+#snd{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));left:10px;z-index:120;background:rgba(0,0,0,.6);border:1px solid var(--line);color:var(--ink);padding:6px 10px;font-size:18px;box-shadow:none;border-radius:20px}
+.fab{position:fixed;bottom:calc(16px + env(safe-area-inset-bottom,0px));left:16px;z-index:40;background:var(--blood);color:#fff;text-decoration:none;font-weight:900;padding:12px 20px;border-radius:30px;box-shadow:0 0 24px rgba(179,18,26,.7);animation:pul2 2.4s infinite}
+@keyframes pul2{50%{box-shadow:0 0 38px rgba(255,58,66,.9)}}
+.tr{position:fixed;width:10px;height:10px;margin:-5px;border-radius:50%;background:#b3121a;box-shadow:0 0 12px #b3121a;pointer-events:none;z-index:60;animation:trf .8s forwards}
+@keyframes trf{to{transform:scale(.2);opacity:0}}
+#scare{position:fixed;inset:0;z-index:200;background:#000;display:flex;align-items:center;justify-content:center;pointer-events:none;animation:sco .9s forwards}
+#scare svg{height:92vh;max-width:100%;animation:scz .9s ease-out}
+@keyframes sco{0%{opacity:0}10%{opacity:1}72%{opacity:1}100%{opacity:0}}
+@keyframes scz{from{transform:scale(.7)}to{transform:scale(1.25)}}
+.qz,.ink{border:1px solid var(--line);background:#080505;padding:20px 16px;text-align:center}
+.qz p{font-weight:700;font-size:18px;margin:0 0 12px}
+.qz button,.chs button{display:block;width:100%;margin:8px 0;background:#120808;border:1px solid var(--blood);box-shadow:none;font-size:16px;padding:11px}
+.chs{display:flex;gap:8px}.chs button{margin:6px 0}
+.ink svg{width:min(240px,70%);margin:0 auto;display:block}
+.book small{color:var(--blood);display:block;margin-top:4px}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important}}
+@media(max-width:480px){.book{flex-direction:column}}
+</style>
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+function num(v){v=String(v).replace(/[\u0660-\u0669]/g,function(d){return d.charCodeAt(0)-1632}).replace(/[\u06F0-\u06F9]/g,function(d){return d.charCodeAt(0)-1776});return parseInt(v,10)}
+document.getElementById("age").addEventListener("keydown",function(ev){if(ev.key==="Enter"){document.getElementById("enter").click()}});
+document.getElementById("enter").onclick=function(){
+  var a=num(document.getElementById("age").value),e=document.getElementById("gerr");
+  if(!a){e.textContent="اكتب سنك بالأرقام (مثلا 20).";return;}
+  if(a<18){e.textContent="آسف، الموقع ده للي سنه 18 سنة أو أكتر.";return;}
+  if(window.__in)return;window.__in=true;document.getElementById("gate").hidden=true;var it=document.getElementById("intro");it.hidden=false;try{startMusic();document.getElementById("snd").hidden=false}catch(e){}var L=["بنفتح الباب...","بنقرا عقلك...","في حد بيراقبك...","أهلاً بيك في الظلام"],lm=document.getElementById("ldm");L.forEach(function(x,i){setTimeout(function(){lm.textContent=x},i*1200)});setTimeout(function(){it.hidden=true;document.getElementById("site").hidden=false;window.scrollTo(0,0);setTimeout(scare,700)},4800);
+};
+
+var WA="201030099263";
+var BOOKS=[
+["تحليل الشخصية","اقرا الناس من تصرفاتهم قبل ما يتكلموا."],
+["كتاب الحمقى","ازاي تفهم الغباء وتتعامل معاه من غير ما يستنزفك."],
+["فن التعامل مع المرأة","فن التواصل مع المرأة وفهم طريقة تفكيرها."],
+["سيكولوجية التلاعب النفسي","ازاي التلاعب بيشتغل، وازاي تحمي نفسك منه."],
+["علم النفس المظلم","الجانب اللي مش بيتقال في علم النفس."]
+];
+var list=document.getElementById("books"),sel=document.getElementById("bk");
+BOOKS.forEach(function(b,i){
+  var d=document.createElement("div");d.className="book";
+  d.innerHTML='<div><h3></h3><p></p><small>الكتاب مجاني</small></div><button type="button">اطلبه</button>';
+  d.querySelector("h3").textContent=b[0];d.querySelector("p").textContent=b[1];
+  d.querySelector("button").onclick=function(){sel.value=b[0];document.getElementById("order").scrollIntoView({behavior:"smooth"});};
+  list.appendChild(d);
+  var o=document.createElement("option");o.value=o.textContent=b[0];sel.appendChild(o);
+});
+var ent=document.getElementById("enter");ent.addEventListener("pointerdown",function(){ent.onclick()});
+document.getElementById("ver").textContent="v8 ✓";
+document.getElementById("send").addEventListener("click",function(ev){
+  var n=document.getElementById("nm").value.trim(),p=document.getElementById("ph").value.trim(),
+      m=document.getElementById("msg").value.trim(),b=sel.value,e=document.getElementById("oerr");
+  if(!n||!p){ev.preventDefault();e.textContent="اكتب اسمك ورقمك الأول.";return;}
+  e.textContent="";
+  var t="طلب جديد من TORKY\nالاسم: "+n+"\nرقمه: "+p+"\nالكتاب: "+b+"\nالطلب: "+(m||"-");
+  this.href="https://wa.me/"+WA+"?text="+encodeURIComponent(t);
+});
+var Q=[["لما تبص في الهاوية فترة طويلة، الهاوية بتبص فيك.","نيتشه"],["طول ما عقلك الباطن مش واعي، هيحكم حياتك وإنت هتسميه قدر.","يونغ"],["أفضّل أكون إنسان كامل على إني أكون إنسان طيب.","يونغ"],["السيكوباتي: غياب التعاطف مع قدرة عالية على الإقناع.","مصطلح"],["الغازلايتنج: إنك تخلي حد يشك في ذاكرته وإدراكه.","مصطلح"]],qi=0,qe=document.getElementById("q");
+function showQ(){document.getElementById("qt").textContent=Q[qi][0];document.getElementById("qa").textContent="— "+Q[qi][1]}
+showQ();setInterval(function(){qe.classList.add("off");setTimeout(function(){qi=(qi+1)%Q.length;showQ();qe.classList.remove("off")},800)},5500);
+
+var AC=null,snd=true;
+function ac(){try{if(!AC)AC=new (window.AudioContext||window.webkitAudioContext)();if(AC.state==="suspended")AC.resume()}catch(e){}return AC}
+function tone(f,d,v,ty,f2){var c=ac();if(!c||!snd)return;var o=c.createOscillator(),g=c.createGain(),t=c.currentTime;o.type=ty||"sine";o.frequency.setValueAtTime(f,t);if(f2)o.frequency.exponentialRampToValueAtTime(f2,t+d);g.gain.setValueAtTime(.0001,t);g.gain.exponentialRampToValueAtTime(v,t+.03);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(c.destination);o.start(t);o.stop(t+d+.05)}
+function clk(){tone(1900,.05,.16,"square",500);tone(196,.9,.09,"triangle",98);tone(208,.9,.05,"sine",104)}
+document.querySelectorAll("#enter,#send,#fab,.book button").forEach(function(x){x.addEventListener("click",clk)});
+var lt=0;document.addEventListener("pointermove",function(e){var n=Date.now();if(n-lt<60)return;lt=n;var d=document.createElement("i");d.className="tr";d.style.left=e.clientX+"px";d.style.top=e.clientY+"px";document.body.appendChild(d);setTimeout(function(){d.remove()},800)});
+var lastS=0,calm=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
+function scare(){var n=Date.now();if(calm||n-lastS<10000)return;lastS=n;var sc=document.getElementById("scare");sc.hidden=true;void sc.offsetWidth;sc.hidden=false;tone(95,.9,.1,"sawtooth",45);tone(420,.8,.035,"square",130);setTimeout(function(){sc.hidden=true},900)}
+var QZ=[["لما حد يظلمك بتعمل إيه؟",["أرد عليه بذكاء من غير ما يحس","أراقب وأفهم دوافعه","أواجهه وأكشف حقيقته"]],["إيه اللي بيشدك أكتر؟",["إزاي الناس بتتأثر","إزاي الناس بتفكر","الجانب المخفي في الناس"]],["في أي موقف غالبًا...",["بقود الموقف","بحلل الموقف","بشوف اللي مخفي فيه"]],["إيه أكتر حاجة بتخوفك؟",["إني أتخدع","إني مافهمش الناس","إني أتجاهل الحقيقة"]]],
+QR=[["سيكولوجية التلاعب النفسي","بتحب تفهم اللي بيحرك الناس وتأثيرهم على بعض."],["تحليل الشخصية","عقلك تحليلي، بتقرا الناس قبل ما يتكلموا."],["علم النفس المظلم","بتدور على اللي ورا الوش، ومش بيكفيك الظاهر."]],qs=0,sc2=[0,0,0],qb=document.getElementById("qz");
+function rq(){qb.innerHTML="";if(qs>=QZ.length){var m=sc2.indexOf(Math.max.apply(null,sc2)),r=QR[m];var p=document.createElement("p");p.textContent="النتيجة: "+r[0];var d=document.createElement("p");d.style.fontWeight="400";d.textContent=r[1];var b=document.createElement("button");b.type="button";b.textContent="اطلب الكتاب ده";b.onclick=function(){clk();sel.value=r[0];document.getElementById("order").scrollIntoView({behavior:"smooth"})};var a=document.createElement("button");a.type="button";a.textContent="ابدأ من الأول";a.onclick=function(){qs=0;sc2=[0,0,0];rq()};qb.append(p,d,b,a);return}
+var p=document.createElement("p");p.textContent=(qs+1)+"/"+QZ.length+" — "+QZ[qs][0];qb.appendChild(p);QZ[qs][1].forEach(function(t,i){var b=document.createElement("button");b.type="button";b.textContent=t;b.onclick=function(){sc2[i]++;qs++;rq()};qb.appendChild(b)})}
+rq();
+var IR=["الوش بيدل على إنك بتهتم بالناس وانطباعاتهم عنك.","الفراشة بتدل على خيال واسع وحاجة جواك بتتغير.","الوحش بيدل إنك واعي بالجانب المظلم جواك، وده بيخليك أقوى لو فهمته."];
+document.querySelectorAll(".chs button").forEach(function(b){b.onclick=function(){document.getElementById("inr").textContent=IR[+b.dataset.i]}});
+
+var MU={on:false,mute:false,m:null};
+function startMusic(){
+var c=ac();if(!c||MU.on)return;MU.on=true;
+var m=c.createGain();m.gain.setValueAtTime(.0001,c.currentTime);m.gain.linearRampToValueAtTime(.55,c.currentTime+6);MU.m=m;
+var len=c.sampleRate*3,ir=c.createBuffer(2,len,c.sampleRate);
+for(var ch=0;ch<2;ch++){var d=ir.getChannelData(ch);for(var i=0;i<len;i++)d[i]=(Math.random()*2-1)*Math.pow(1-i/len,2.6)}
+var cv=c.createConvolver();cv.buffer=ir;var wet=c.createGain();w
